@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Create or update a book</title>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand p-1" href="../home.html">Home</a>
+
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link text-secondary-emphasis" aria-current="page" href="#">Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-secondary-emphasis" href="../genres/list.html">Genres</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-secondary-emphasis" href="../authors/list.html">Authors</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link p-2" href="">API</a>
+          </li>
+        </ul>
+
+      </nav>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <div class='position-absolute top-50 start-50 translate-middle'>
+        <form action="">
+
+          <div class="input-group flex-nowrap mb-2">
+            <input type="text" class="form-control" placeholder="Title">
+          </div>
+          <div class="input-group flex-nowrap mb-2">
+            <input type="text" class="form-control" placeholder="Author">
+          </div>
+          <div class="input-group flex-nowrap mb-2">
+            <input type="text" class="form-control" placeholder="Genre">
+          </div>
+          <div class="input-group flex-nowrap mb-2">
+            <input type="text" class="form-control" placeholder="Description">
+          </div>
+          <div class="input-group flex-nowrap mb-2">
+            <label for="publication-date-input" class="form-label p-2">Publication date:</label>
+            <input id="publication-date-input" type="date" class="form-control">
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <a href="./list.html" class="btn btn btn-secondary">Cancel</a>
+            <button href="#" type="submit" class="btn btn btn-primary">Submit</a>
+          </div>
+
+      </form>
+    </div>
+
+</body>
+</html>
