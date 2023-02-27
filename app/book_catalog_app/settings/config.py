@@ -24,12 +24,6 @@ class DevelopmentConfig(Config):
         f"{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DEV_DB_NAME}")
 
 
-class TestingConfig(Config):
-    TESTING = True
-    SQLALCHEMY_DATABASE_URI = (f"{DB}://" +
-        f"{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{TEST_DB_NAME}")
-
-
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = (f"{DB}://" +
         f"{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{PROD_DB_NAME}")

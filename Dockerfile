@@ -5,14 +5,14 @@ ENV PYTHONDONTWRITEBYTECODE 1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED 1
 
-COPY ./requirements.txt /tmp/requirements.txt
-COPY ./requirements.dev.txt /tmp/requirements.dev.txt
+COPY ./app/requirements.txt /tmp/requirements.txt
+COPY ./app/requirements.dev.txt /tmp/requirements.dev.txt
 RUN mkdir -p /app
-COPY . /app
+COPY ./app /app
 WORKDIR /app
 EXPOSE 5000
 
-ARG DEV=false
+ARG DEV=${DEV}
 RUN pip install virtualenv && \
     virtualenv /venv && \
     /venv/bin/pip install --upgrade pip && \

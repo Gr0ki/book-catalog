@@ -5,7 +5,7 @@ services:
     image: mysql:8.0.32-debian
     container_name: mysql
     env_file:
-      - ./.env
+      - ./app/.env
     environment:
       - MYSQL_DATABASE=${DEV_DB_NAME}
       - MYSQL_USER=${DB_USER}
@@ -20,10 +20,21 @@ services:
     build:
       context: .
       args:
-        - DEV=false
+        - DEV=${DEV}
+    # env_file:
+    #   - ./app/.env
+    environment:
+      - DEV=${DEV}
+      - SECRET_KEY=${SECRET_KEY}
+      - DB=${DB}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DEV_DB_NAME=${DEV_DB_NAME}
+      - PROD_DB_NAME=${PROD_DB_NAME}
     container_name: flask
-    env_file:
-      - ./.env
     ports:
       - "5000:5000"
     volumes:

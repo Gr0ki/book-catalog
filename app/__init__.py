@@ -1,13 +1,17 @@
+import os
 from flask import Flask
 
 from .book_catalog_app.settings.extensions import db
-from .book_catalog_app.settings.config import DevelopmentConfig
+from .book_catalog_app.settings.config import DevelopmentConfig, ProductionConfig
 
 
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__)
-    app.config.from_object(DevelopmentConfig)
+    if os.getenv("DEV") == "false":
+        app.config.from_object(ProductionConfig)
+    else:
+        app.config.from_object(DevelopmentConfig)
 
     register_extentions(app)
 
