@@ -1,0 +1,2 @@
+[![Build Status](https://app.travis-ci.com/Gr0ki/book-catalog.svg?token=pSdsQ1fKcT8fisi2WN4y&branch=main)](https://app.travis-ci.com/Gr0ki/book-catalog)
+[![Coverage Status](https://coveralls.io/repos/github/Gr0ki/book-catalog/badge.svg?t=VooMEp)](https://coveralls.io/github/Gr0ki/book-catalog)
