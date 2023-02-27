@@ -4,8 +4,8 @@ services:
   db:
     image: mysql:8.0.32-debian
     container_name: mysql
-    env_file:
-      - ./app/.env
+    # env_file:
+    #   - ./app/.env
     environment:
       - MYSQL_DATABASE=${DEV_DB_NAME}
       - MYSQL_USER=${DB_USER}

@@ -8,9 +8,11 @@ before_install:
   - docker-compose build
 
 script:
-  - docker-compose run --rm app sh -c "pylint ."
-  - docker-compose run --rm app sh -c "./wait_for_db.sh && coverage run --source=pytest ./app/tests"
+  - docker-compose run --rm app sh -c "pylint"
+  - docker-compose run --rm app sh -c "./app/wait_for_db.sh && coverage run --source=pytest ./app/tests"
 
 after_script:
-  - coveralls
   - export DEV=false
+
+after_success:
+  - docker-compose run --rm app sh -c "coveralls"
