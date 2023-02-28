@@ -1,3 +1,5 @@
+# pylint: skip-file
+"""Configs for the Flask app."""
 import os
 
 
@@ -14,16 +16,24 @@ PROD_DB_NAME = os.getenv("PROD_DB_NAME")
 
 
 class Config:
+    """Basic configs"""
+
     TESTING = False
     SECRET_KEY = os.getenv("SECRET_KEY")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class DevelopmentConfig(Config):
-    SQLALCHEMY_DATABASE_URI = (f"{DB}://" +
-        f"{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DEV_DB_NAME}")
+    """Development and testings settings."""
+
+    SQLALCHEMY_DATABASE_URI = (
+        f"{DB}://" + f"{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DEV_DB_NAME}"
+    )
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = (f"{DB}://" +
-        f"{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{PROD_DB_NAME}")
+    """Production settings."""
+
+    SQLALCHEMY_DATABASE_URI = (
+        f"{DB}://" + f"{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{PROD_DB_NAME}"
+    )

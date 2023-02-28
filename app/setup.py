@@ -1,4 +1,6 @@
-from setuptools import setup, find_packages
+"""Setup module file"""
+from setuptools import find_packages, setup
+
 
 setup(
     name="book-catalog-app",
@@ -9,10 +11,5 @@ It provides HTML forms and REST API to perform these actions on stored data.
 The application also offers an opportunity to search books by published dates
 in API and Forms.""",
     packages=find_packages(),
-    install_requires=(
-        "Flask",
-        "Flask-SQLAlchemy",
-        "python-dotenv",
-        "mysqlclient"
-    )
+    install_requires=("Flask", "Flask-SQLAlchemy", "python-dotenv", "mysqlclient"),
 )
