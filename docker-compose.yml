@@ -34,11 +34,12 @@ services:
       - DB_PORT=${DB_PORT}
       - DEV_DB_NAME=${DEV_DB_NAME}
       - PROD_DB_NAME=${PROD_DB_NAME}
+      - COVERAGE_FILE=${COVERAGE_FILE}
     container_name: flask
     ports:
       - "5000:5000"
     volumes:
-      - ./:/app
+      - ./app/:/home/app-user/book-catalog/app
     command: >
       sh -c "./wait_for_db.sh && flask run --host=0.0.0.0"
     depends_on:

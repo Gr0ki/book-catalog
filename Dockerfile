@@ -5,14 +5,17 @@ ENV PYTHONDONTWRITEBYTECODE 1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED 1
 
+RUN addgroup -S appgroup && \
+    adduser -S app-user -G appgroup
+
+RUN mkdir -p /home/app-user/book-catalog
+WORKDIR /home/app-user/book-catalog
+
 COPY ./app/requirements.txt /tmp/requirements.txt
 COPY ./app/requirements.dev.txt /tmp/requirements.dev.txt
-RUN mkdir -p /app
-COPY ./app /app
-WORKDIR /app
-EXPOSE 5000
 
 ARG DEV=${DEV}
+
 RUN pip install virtualenv && \
     virtualenv /venv && \
     /venv/bin/pip install --upgrade pip && \
@@ -24,11 +27,10 @@ RUN pip install virtualenv && \
     rm -rf /tmp && \
     pip uninstall -y virtualenv distlib filelock platformdirs  && \
     apk del gcc musl-dev && \
-    adduser \
-    --disabled-password \
-    --no-create-home \
-    app-user
+    chown -R app-user:appgroup /home/app-user/book-catalog/
 
 ENV PATH="/venv/bin:$PATH"
+
+EXPOSE 5000
 
 USER app-user
