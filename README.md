@@ -1,7 +1,7 @@
 # **Book Catalog**
 
 [![Build Status](https://app.travis-ci.com/Gr0ki/book-catalog.svg?token=pSdsQ1fKcT8fisi2WN4y&branch=main)](https://app.travis-ci.com/Gr0ki/book-catalog)
-[![Coverage Status](https://coveralls.io/repos/github/Gr0ki/book-catalog/badge.svg?t=VooMEp)](https://coveralls.io/github/Gr0ki/book-catalog)
+[![Coverage Status](https://coveralls.io/repos/github/Gr0ki/book-catalog/badge.svg?branch=project-setup&t=VooMEp)](https://coveralls.io/github/Gr0ki/book-catalog?branch=project-setup)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ## **Documentation**
