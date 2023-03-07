@@ -12,6 +12,4 @@ script:
 
 after_script:
   - export DEV=false
-
-after_success:
   - docker-compose run --rm app sh -c "coveralls"
