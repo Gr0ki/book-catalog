@@ -6,7 +6,7 @@ Tests for models.
 
 import datetime
 
-from .fixtures import new_author, new_genre, new_book
+from .conftest import new_author, new_genre, new_book
 from ..book_catalog_app.models.models import Book
 
 
@@ -25,7 +25,7 @@ def test_create_genre(new_genre):
 def test_create_book(new_book):
     """Test if data provided for a book instance is stored as expected."""
     assert new_book.title == "Test Book"
-    assert new_book.author.name == "Test Author"
+    assert new_book.author == 1
     assert new_book.genres[0].name == "Test Genre"
     assert new_book.publication_date == datetime.date(2022, 1, 1)
     assert new_book.description == "Test book description"
@@ -57,18 +57,18 @@ def test_update_genre_data(new_genre):
 def test_update_book_data(new_book):
     """Test if updated data is stored successfully in the book instance"""
     new_title = "Test Book 3"
-    new_author_inst = None
+    new_author_id = None
     new_publication_date = datetime.date(2023, 3, 3)
     new_description = "Test book description 2"
 
     new_book.title = new_title
-    new_book.author = new_author_inst
+    new_book.author = new_author_id
     new_book.genres.clear()
     new_book.publication_date = new_publication_date
     new_book.description = new_description
 
     assert new_book.title == new_title
-    assert new_book.author == new_author_inst
+    assert new_book.author == new_author_id
     assert len(new_book.genres) == 0
     assert new_book.publication_date == new_publication_date
     assert new_book.description == new_description
@@ -79,13 +79,13 @@ def test_update_book_data(new_book):
 
 def test_add_genre_to_book(new_author, new_genre):
     """Test adding genre to a book"""
-    book = Book(title="Test title", author=new_author)
+    book = Book(title="Test title", author=new_author.id)
     book.genres.append(new_genre)
     assert new_genre in book.genres
 
 
 def test_delete_genre_from_book(new_author, new_genre):
     """Test removing genre from a book"""
-    book = Book(title="Test title", author=new_author, genres=[new_genre])
+    book = Book(title="Test title", author=new_author.id, genres=[new_genre])
     book.genres.remove(new_genre)
     assert new_genre not in book.genres

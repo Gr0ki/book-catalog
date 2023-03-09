@@ -16,7 +16,7 @@ book_genre = db.Table(
 class Author(db.Model):
     """An Author model"""
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(255), nullable=False)
     bio = db.Column(db.Text)
     books = db.relationship("Book", backref="book_author")
@@ -29,7 +29,7 @@ class Author(db.Model):
 class Book(db.Model):
     """A Book model"""
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(255), nullable=False)
     author = db.Column(db.Integer, db.ForeignKey("author.id"))
     genres = db.relationship(
@@ -46,7 +46,7 @@ class Book(db.Model):
 class Genre(db.Model):
     """A Genre model"""
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text)
 

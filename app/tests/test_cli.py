@@ -7,7 +7,7 @@ Tests for custom Flask CLI commands.
 from click.testing import CliRunner
 from sqlalchemy import inspect
 
-from .fixtures import app
+from .conftest import app
 from ..book_catalog_app.settings.extensions import db
 from ..book_catalog_app.models.models import Book, Author, Genre
 from ..book_catalog_app.service.cli import populate_db_command, db_drop_all_command
