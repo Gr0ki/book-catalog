@@ -5,7 +5,7 @@ import os
 from flask import Flask
 
 from .book_catalog_app.settings.config import TestingConfig, ProductionConfig
-from .book_catalog_app.settings.extensions import db, migrate
+from .book_catalog_app.settings.extensions import db, migrate, ma
 from .book_catalog_app.service.cli import populate_db_command, db_drop_all_command
 
 
@@ -27,6 +27,7 @@ def register_extentions(app):
     """Register extentions for the Flask app"""
     db.init_app(app)
     migrate.init_app(app, db)
+    ma.init_app(app)
 
 
 def register_cli_commands(app):
