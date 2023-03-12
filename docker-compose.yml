@@ -52,6 +52,7 @@ services:
       - "5000:5000"
     volumes:
       - ./app/:/home/app-user/book-catalog/app
+      - ./tests/:/home/app-user/book-catalog/tests
       - coverage:/home/app-user/book-catalog/coverage
     command: >
       sh -c "./app/wait_for_db.sh && gunicorn --bind=0.0.0.0:5000 'app:create_app()'"

@@ -4,7 +4,7 @@ import click
 from flask.cli import with_appcontext
 from faker import Faker
 
-from app.src.service.models import Author, Book, Genre
+from app.service.models import Author, Book, Genre
 from ..settings.extensions import db
 
 fake = Faker()

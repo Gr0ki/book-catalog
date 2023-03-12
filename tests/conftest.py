@@ -6,10 +6,14 @@ Fixtures for pytest tests.
 import pytest
 from faker import Faker
 
-from ..manage import create_app
-from ..src.settings.config import TestingConfig
-from ..src.settings.extensions import db
-from ..src.service.models import Book, Author, Genre
+import sys
+
+sys.path.append("..")
+
+from app.manage import create_app
+from app.settings.config import TestingConfig
+from app.settings.extensions import db
+from app.service.models import Book, Author, Genre
 
 
 fake = Faker()

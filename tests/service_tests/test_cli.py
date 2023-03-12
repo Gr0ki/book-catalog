@@ -5,9 +5,9 @@ Tests for custom Flask CLI commands.
 from click.testing import CliRunner
 from sqlalchemy import inspect
 
-from ...src.settings.extensions import db
-from ...src.service.models import Book, Author, Genre
-from ...src.service.cli import populate_db_command, db_drop_all_command
+from app.settings.extensions import db
+from app.service.models import Book, Author, Genre
+from app.service.cli import populate_db_command, db_drop_all_command
 
 
 def test_populate_db_command(app):

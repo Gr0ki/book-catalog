@@ -12,8 +12,8 @@ RUN mkdir -p /home/app-user/book-catalog/coverage
 
 WORKDIR /home/app-user/book-catalog
 
-COPY ./app/requirements.txt /tmp/requirements.txt
-COPY ./app/requirements.dev.txt /tmp/requirements.dev.txt
+COPY ./dockerfiles/flask/requirements/requirements.txt /tmp/requirements.txt
+COPY ./dockerfiles/flask/requirements/requirements.dev.txt /tmp/requirements.dev.txt
 
 COPY .git /home/app-user/book-catalog/.git
 
