@@ -41,6 +41,7 @@ services:
       - DB_NAME=${DB_NAME}
       - TEST_DB_NAME=${TEST_DB_NAME}
       - COVERAGE_FILE=${COVERAGE_FILE}
+      - COVERALLS_REPO_TOKEN=${COVERALLS_REPO_TOKEN}
     container_name: flask
     ports:
       - "5000:5000"
