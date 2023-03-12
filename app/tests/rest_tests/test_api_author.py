@@ -5,7 +5,7 @@ Tests for Author CRUD API.
 
 from faker import Faker
 
-from ...book_catalog_app.service.serializers import AuthorSchema
+from ...src.service.serializers import AuthorSchema
 
 fake = Faker()
 
