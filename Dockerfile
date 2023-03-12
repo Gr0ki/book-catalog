@@ -30,8 +30,7 @@ RUN pip install virtualenv && \
     rm -rf /tmp && \
     pip uninstall -y virtualenv distlib filelock platformdirs  && \
     apk del gcc musl-dev && \
-    chown -R app-user:appgroup /home/app-user/book-catalog/ && \
-    git init && git remote add origin
+    chown -R app-user:appgroup /home/app-user/book-catalog/
 
 ENV PATH="/venv/bin:$PATH"
 
