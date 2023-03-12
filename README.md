@@ -16,18 +16,30 @@
 
 1. Export some **environment variables** with your values, for example:
 
-        export SECRET_KEY=1example4SECRET3key3
-        export DB=mysql
-        export DB_USER=example_user
-        export DB_PASSWORD=example_password
-        export MYSQL_ROOT_PASSWORD=example_root_user_password
-        export DB_PORT=3306
-        export DB_TEST_PORT=33062
-        export DB_NAME=db_example
-        export TEST_DB_NAME=test_db_example
-        export COVERAGE_FILE=/home/app-user/book-catalog/.coverage
+    - **[Option 1]**: Export in the `.env` file:
 
-2. Set **DEV** to **"true"** if you want to test or check the linting of the app; otherwise, leave it blank or set it to **"false"**.
+            export SECRET_KEY=1example4SECRET3key3
+            export DB=mysql
+            export DB_USER=example_user
+            export DB_PASSWORD=example_password
+            export MYSQL_ROOT_PASSWORD=example_root_user_password
+            export DB_PORT=3306
+            export DB_TEST_PORT=33062
+            export DB_NAME=db_example
+            export TEST_DB_NAME=test_db_example
+            export COVERAGE_FILE=/home/app-user/book-catalog/coverage/.coverage
+            export COVERALLS_REPO_TOKEN=None
+
+        And run docker compose by specifying path to env, for example (option 1):
+
+            docker compose --env-file <path-to-env-file> <your command>
+
+    - **[Option 2]**: Export env variables to your shell and use commands below without changes:
+
+            export SECRET_KEY=1example4SECRET3key3 && export DB=mysql && export DB_USER=example_user && export DB_PASSWORD=example_password && export MYSQL_ROOT_PASSWORD=example_root_user_password && export DB_PORT=3306 && export DB_TEST_PORT=33062 && export DB_NAME=db_example && export TEST_DB_NAME=test_db_example && export DEV=true && export COVERAGE_FILE=/home/app-user/book-catalog/coverage/.coverage && export COVERALLS_REPO_TOKEN=None
+
+
+2. Set `DEV` to `true` if you want to test or check the linting of the app; otherwise, leave it blank or set it to `false`.
 
         export DEV=true
 
@@ -35,16 +47,27 @@
 
         docker compose build
 
-4. To run the app follow the next steps **\[optional\]**:
+4. To run the app follow the next steps (by running containers for the first time, don't forget to use `./app/wait_for_db.sh` script) **[optional]**:
 
     - Apply migrations:
 
-            docker compose run --rm app sh -c "flask db upgrade -d ./app/book_catalog_app/migrations"
+            docker compose run --rm flask sh -c "flask db upgrade -d ./app/src/migrations"
+
+    - Populate database with random data:
+
+            docker compose run --rm flask sh -c "flask populate-db"
 
     - Start the app:
 
             docker compose up
 
-5. To run **tests** and **pylint** use the following command **\[optional\]**:
 
-        docker-compose run --rm app sh -c "pylint ./app && ./app/wait_for_db.sh && pytest"
+
+5. To run `tests` and `pylint` use the following command **[optional]**:
+
+        docker-compose run --rm flask sh -c "pylint ./app && ./app/wait_for_db.sh && pytest"
+
+
+To sum up: by combining all the above, after exporting env variables, you can run the following script to build containers, migrate and populate db, and start the server all at once:
+
+    docker compose build && docker compose run --rm flask sh -c "./app/wait_for_db.sh && flask db upgrade -d ./app/src/migrations && flask populate-db" && docker compose up
