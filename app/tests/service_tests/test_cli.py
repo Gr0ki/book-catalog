@@ -1,5 +1,3 @@
-# pylint: disable=redefined-outer-name
-# pylint: disable=unused-import
 """
 Tests for custom Flask CLI commands.
 """
@@ -7,10 +5,9 @@ Tests for custom Flask CLI commands.
 from click.testing import CliRunner
 from sqlalchemy import inspect
 
-from .conftest import app
-from ..book_catalog_app.settings.extensions import db
-from ..book_catalog_app.models.models import Book, Author, Genre
-from ..book_catalog_app.service.cli import populate_db_command, db_drop_all_command
+from ...book_catalog_app.settings.extensions import db
+from ...book_catalog_app.service.models import Book, Author, Genre
+from ...book_catalog_app.service.cli import populate_db_command, db_drop_all_command
 
 
 def test_populate_db_command(app):
@@ -39,4 +36,7 @@ def test_drop_tables(app):
 
     with app.app_context():
         inspector = inspect(db.engine)
-        assert len(inspector.get_table_names()) == 0
+        if "alembic_version" in inspector.get_table_names():
+            assert len(inspector.get_table_names()) == 1
+        else:
+            assert len(inspector.get_table_names()) == 0
