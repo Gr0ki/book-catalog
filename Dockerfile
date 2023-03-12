@@ -20,6 +20,7 @@ RUN pip install virtualenv && \
     virtualenv /venv && \
     /venv/bin/pip install --upgrade pip && \
     apk add gcc musl-dev mariadb-connector-c-dev && \
+    apk add git && \
     /venv/bin/pip install -r /tmp/requirements.txt && \
     if [ $DEV = "true" ]; \
     then /venv/bin/pip install -r /tmp/requirements.dev.txt ; \
