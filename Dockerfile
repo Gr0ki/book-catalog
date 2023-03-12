@@ -8,13 +8,13 @@ ENV PYTHONUNBUFFERED 1
 RUN addgroup -S appgroup && \
     adduser -S app-user -G appgroup
 
-RUN mkdir -p /home/app-user/book-catalog
+RUN mkdir -p /home/app-user/book-catalog/coverage
 WORKDIR /home/app-user/book-catalog
 
 COPY ./app/requirements.txt /tmp/requirements.txt
 COPY ./app/requirements.dev.txt /tmp/requirements.dev.txt
 
-COPY .git /home/app-user/book-catalog/
+COPY .git /home/app-user/book-catalog/.git
 
 ARG DEV=${DEV}
 
