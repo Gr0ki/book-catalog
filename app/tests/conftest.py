@@ -3,16 +3,19 @@
 Fixtures for pytest tests.
 """
 
-import datetime
 import pytest
+from faker import Faker
 
 from ..manage import create_app
 from ..book_catalog_app.settings.config import TestingConfig
 from ..book_catalog_app.settings.extensions import db
-from ..book_catalog_app.models.models import Book, Author, Genre
+from ..book_catalog_app.service.models import Book, Author, Genre
 
 
-@pytest.fixture(scope="session")
+fake = Faker()
+
+
+@pytest.fixture(scope="module")
 def app():
     """Return app handler with set up database and application configurations."""
     app = create_app()
@@ -24,44 +27,76 @@ def app():
         db.session.rollback()
 
 
-@pytest.fixture(scope="function")
-def db_handler(app):
-    """Provides db handler for testing purposes within app context."""
-    with app.app_context():
+@pytest.fixture(scope="module")
+def client(app):
+    """Returns a test client instance for the Flask app."""
+    with app.test_client() as client:
         db.drop_all()
         db.create_all()
-        yield db
+        yield client
         db.session.rollback()
+    fake.unique.clear()
 
 
-@pytest.fixture(scope="function")
-def new_author(db_handler):
-    """Create and return a new author instance for each invocation."""
-    author = Author(name="Test Author", bio="Test bio")
-    db_handler.session.add(author)
-    db_handler.session.commit()
-    return author
+@pytest.fixture(scope="module")
+def new_author(app):
+    """Returns \"_new_author\" function to call inside tests."""
+    with app.app_context():
+
+        def _new_author(given_name=None, given_bio=fake.paragraph()):
+            """Create and return a new author instance for each invocation."""
+            author = Author(name=given_name or fake.unique.name(), bio=given_bio)
+            db.session.add(author)
+            db.session.commit()
+            return author
+
+        return _new_author
 
 
-@pytest.fixture(scope="function")
-def new_genre(db_handler):
-    """Create and return a new genre instance for each invocation."""
-    genre = Genre(name="Test Genre", description="Test genre description")
-    db_handler.session.add(genre)
-    db_handler.session.commit()
-    return genre
+@pytest.fixture(scope="module")
+def new_genre(app):
+    """Returns \"_new_genre\" function to call inside tests."""
+    with app.app_context():
+
+        def _new_genre(given_name=None, given_description=fake.paragraph()):
+            """Create and return a new genre instance for each invocation."""
+            genre = Genre(
+                name=given_name or fake.unique.name(), description=given_description
+            )
+            db.session.add(genre)
+            db.session.commit()
+            return genre
+
+        return _new_genre
 
 
-@pytest.fixture(scope="function")
-def new_book(new_author, new_genre, db_handler):
-    """Create and return a new book instance for each invocation."""
-    book = Book(
-        title="Test Book",
-        author=new_author.id,
-        publication_date=datetime.date(2022, 1, 1),
-        description="Test book description",
-    )
-    book.genres.append(new_genre)
-    db_handler.session.add(book)
-    db_handler.session.commit()
-    return book
+@pytest.fixture(scope="module")
+def new_book(app):
+    """Returns \"_new_book\" function to call inside tests."""
+    with app.app_context():
+
+        def _new_book(
+            given_title=None,
+            given_author_id=None,
+            given_genre_id=None,
+            given_publication_date=fake.date_this_century(),
+            given_description=fake.paragraph(),
+        ):
+            """Create and return a new book instance for each invocation."""
+            author = Author(name=fake.unique.name(), bio=fake.sentence())
+            genre = Genre(name=fake.unique.word(), description=fake.sentence())
+            db.session.add(author)
+            db.session.add(genre)
+            db.session.commit()
+            book = Book(
+                title=given_title or fake.unique.sentence(),
+                author_id=given_author_id or author.id,
+                genre_id=given_genre_id or genre.id,
+                publication_date=given_publication_date,
+                description=given_description,
+            )
+            db.session.add(book)
+            db.session.commit()
+            return book
+
+        return _new_book
