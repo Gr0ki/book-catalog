@@ -6,7 +6,9 @@
 
 ## **Documentation**
 
-[Software Requirements Specification](./documentation/Software_Requirements_Specification.md)
+[📚 Software Requirements Specification 📚](./documentation/Software_Requirements_Specification.md)
+
+[📚 API documentation (Postman) 📚](https://documenter.getpostman.com/view/22115905/2s93JtQ3cR)
 
 ## **Setup instruction**
 
