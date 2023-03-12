@@ -9,6 +9,7 @@ RUN addgroup -S appgroup && \
     adduser -S app-user -G appgroup
 
 RUN mkdir -p /home/app-user/book-catalog/coverage
+
 WORKDIR /home/app-user/book-catalog
 
 COPY ./app/requirements.txt /tmp/requirements.txt
