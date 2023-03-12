@@ -4,6 +4,17 @@
 [![Coverage Status](https://coveralls.io/repos/github/Gr0ki/book-catalog/badge.svg?branch=main&t=VooMEp)](https://coveralls.io/github/Gr0ki/book-catalog?branch=main)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
+
+The project contains `RESTful API` (see docs link below) and is supposed to contain template views (see `Software Requirements Specification` by following the link below), but this wasn't implemented yet.
+
+There was CI process configured by using `Travis CI` (`pylint`, `pytest`, `coveralls`).
+
+All models, serializers and API endpoints were `covered by tests`.
+
+Also, there were configured `Gunicorn` and `Nginx`, `mysql` and `Flask` app in separate `docker` containers.
+
+All used technologies, services, frameworks are listed in the "about" section (on the right side of this page).
+
 ## **Documentation**
 
 [📚 Software Requirements Specification 📚](./documentation/Software_Requirements_Specification.md)
