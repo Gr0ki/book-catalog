@@ -6,13 +6,13 @@ import os
 from flask import Flask, Blueprint
 from flask_restful import Api
 
-from .src.settings.config import TestingConfig, ProductionConfig
-from .src.settings.extensions import db, migrate, ma
-from .src.service.cli import populate_db_command, db_drop_all_command
-from .src.rest.author_api import AuthorResource
-from .src.rest.genre_api import GenreResource
+from .settings.config import TestingConfig, ProductionConfig
+from .settings.extensions import db, migrate, ma
+from .service.cli import populate_db_command, db_drop_all_command
+from .rest.author_api import AuthorResource
+from .rest.genre_api import GenreResource
 
-from .src.rest.book_api import BookResource
+from .rest.book_api import BookResource
 
 
 api_bp = Blueprint("api", __name__, url_prefix="/api")

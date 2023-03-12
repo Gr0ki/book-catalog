@@ -5,7 +5,7 @@ Tests for book CRUD API.
 
 from faker import Faker
 
-from ...src.service.serializers import (
+from app.service.serializers import (
     BookSchema,
     AuthorSchema,
     GenreSchema,

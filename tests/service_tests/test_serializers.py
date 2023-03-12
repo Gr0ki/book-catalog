@@ -2,7 +2,7 @@
 
 from faker import Faker
 
-from ...src.service.serializers import (
+from app.service.serializers import (
     GenreSchema,
     AuthorSchema,
     BookSchema,
