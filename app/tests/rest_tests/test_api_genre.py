@@ -5,7 +5,7 @@ Tests for genre CRUD API.
 
 from faker import Faker
 
-from ...book_catalog_app.service.serializers import GenreSchema
+from ...src.service.serializers import GenreSchema
 
 fake = Faker()
 

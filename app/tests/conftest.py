@@ -7,9 +7,9 @@ import pytest
 from faker import Faker
 
 from ..manage import create_app
-from ..book_catalog_app.settings.config import TestingConfig
-from ..book_catalog_app.settings.extensions import db
-from ..book_catalog_app.service.models import Book, Author, Genre
+from ..src.settings.config import TestingConfig
+from ..src.settings.extensions import db
+from ..src.service.models import Book, Author, Genre
 
 
 fake = Faker()
