@@ -14,6 +14,8 @@ WORKDIR /home/app-user/book-catalog
 COPY ./app/requirements.txt /tmp/requirements.txt
 COPY ./app/requirements.dev.txt /tmp/requirements.dev.txt
 
+COPY .git /home/app-user/book-catalog/
+
 ARG DEV=${DEV}
 
 RUN pip install virtualenv && \
@@ -28,7 +30,8 @@ RUN pip install virtualenv && \
     rm -rf /tmp && \
     pip uninstall -y virtualenv distlib filelock platformdirs  && \
     apk del gcc musl-dev && \
-    chown -R app-user:appgroup /home/app-user/book-catalog/
+    chown -R app-user:appgroup /home/app-user/book-catalog/ && \
+    git init && git remote add origin
 
 ENV PATH="/venv/bin:$PATH"
 
