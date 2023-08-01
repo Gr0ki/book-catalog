@@ -9,7 +9,7 @@ The project contains `RESTful API` (see docs link below) and is supposed to cont
 
 There was CI process configured by using `Travis CI` (`pylint`, `pytest`, `coveralls`).
 
-All models, serializers and API endpoints were `covered by tests`.
+All models, serializers and API endpoints were `covered with tests`.
 
 Also, there were configured `Gunicorn` and `Nginx`, `mysql` and `Flask` app in separate `docker` containers.
 
